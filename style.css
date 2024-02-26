@@ -92,7 +92,7 @@ body {
   font: 16px/1.05 "Montserrat", sans-serif;
 }
 
-div {
+#chocolate_rains, .heart, .ring, .inner, .regular, .movable, .left, .right, .reverse{
   position: absolute;
   /*transform-style: preserve-3d;*/
 }
