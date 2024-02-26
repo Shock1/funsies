@@ -31,9 +31,9 @@ em {
 }
 
 .myHeart {
-  bottom: 4em;
+  bottom: 17em;
   position: absolute;
-  right: 4em;
+  right: 6em;
 }
 
 .myHeart::before,
@@ -153,7 +153,7 @@ body {
   opacity: 0.5;
 }
 .heart:nth-child(1) {
-  transform: translateX(191px) translateZ(-244px) scale3d(0.5, 0.5, 0.5);
+  transform: translateX(191px) translateZ(-244px) translateY(193px) scale3d(0.5, 0.5, 0.5);
 }
 .heart:nth-child(1) .movable {
   -webkit-animation: drop 5000ms 419ms linear infinite;
