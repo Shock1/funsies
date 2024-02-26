@@ -85,7 +85,10 @@ body {
 }
 
 .card-body {
+  right:190px;
   align-items: center;
+  margin-left: auto !important;
+  margin-right: auto !important;
   background-color: #eee;
   display: flex;
   font: 16px/1.05 "Montserrat", sans-serif;
