@@ -1,5 +1,3 @@
-console.log("Connected to HTML!");
-
 $(".hero-btn").click(function () {
   if (!$(".hero-btn").parent().hasClass("active")) {
     $(this).parent().stop().addClass("active");
