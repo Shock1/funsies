@@ -30,8 +30,8 @@
 <div class = 'delay-button'>
   <div class='v-align'>
     <div class='hero-btn'>
-      <a href="../index.html">
-        <button class='btn'>
+      <!--<a href="../index.html"> -->
+        <button class='btn' onclick='redirectToSecondPage()'>
           For Pumpkin
         </button>
         <span class='particles-circle'></span>
@@ -69,12 +69,22 @@
         <span class='particles-circle'></span>
         <span class='particles-circle'></span>
         <span class='particles-circle'></span>
-      </a>
+      <!--</a> -->
     </div>
     <p class = 'warning delay-warning'>Exlcusive to Sladkix Bez Saxora</p>
+    <a onclick='redirectToSecondPage()'>Click</a>
   </div>
 </div>
     
 <script src="btn.js"></script>
+<script>
+  function redirectToSecondPage() {
+      // Wait for 500 milliseconds (0.5 seconds) before redirecting
+      setTimeout(function() {
+        window.location.href = '../index.html';
+      }, 1500);
+    }
+</script>
+
 </body>
 </html>
