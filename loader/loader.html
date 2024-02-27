@@ -12,6 +12,7 @@
 </head>
 
 <body>
+   <div id="first-page-content">
   <div class="container">
   <svg width="330" height="330" viewBox="0 0 330 330">
     <path class="heart1" d="M175.75975,179.61a63.337,63.337,0,0,1-10.755,7.195c-.005,0-.005,0-.005.005,0-.005,0-.005-.005-.005-7.88-4.25-13.14-8.82-16.645-13.085-7.035-8.535-7.04-15.845-7.015-16.87v-.11c0-7.075,5.115-13.55,12.8-13.55a10.63737,10.63737,0,0,1,7.27,2.71,12.61014,12.61014,0,0,1,3.595,5.795c1.21-4.11,4.75-8.505,10.865-8.505,7.685,0,12.8,6.475,12.8,13.55v.11C188.69975,158.11,188.67473,168.79,175.75975,179.61Z" style="fill: #db3f3c" />
@@ -71,15 +72,23 @@
     </div>
     <p class = 'warning delay-warning'>Exlcusive to Sladkix Bez Saxora</p>
   </div>
-</div> 
+</div>
 <script src="btn.js"></script>
-<script>
+<script> 
   function redirectToSecondPage() {
-      // Wait for 500 milliseconds (0.5 seconds) before redirecting
-      setTimeout(function() {
-        window.location.href = '../index.html';
-      }, 1500);
-    }
+      // Fade out the content of the first page
+      $('#first-page-content').fadeOut(1000, function() {
+        // Gradually change the background color to white
+        setTimeout(function() {
+            $('body').css('background-color', '#eee');
+            // After background color transition completes, redirect to the second page
+            setTimeout(function() {
+                window.location.href = '../index.html';
+            }, 1000);
+        }, 500); // Delay changing the background color by 500ms
+      });
+  }
 </script>
+</div>
 </body>
 </html>
