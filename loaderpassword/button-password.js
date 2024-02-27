@@ -7,21 +7,23 @@ $(".hero-btn").click(function () {
   }
 });
 
-
-$(".hero-field").click(function () {
+$(".hero-btn .btn").click(function () {
     // Check if the input field contains the specific word
-    var userInput = $("#inputField").val().trim().toLowerCase();
-    var specificWord = "yourword"; // Replace "yourword" with the specific word
+    var userInput = $("#name").val().trim().toLowerCase(); // Using #name to target the input field
+    var specificWord = "lovlove you"; // Replace "yourword" with the specific word
 
     if (userInput === specificWord) {
-        // If the input matches the specific word, proceed with the delayed button animation
-        if (!$(this).parent().hasClass("active")) {
-            $(this).parent().addClass("active");
-            setTimeout(function () {
-                // Redirect to the next page after the animation completes
-                window.location.href = "../index.html";
-            }, 2000); // Delay time in milliseconds (2 seconds in this case)
-        }
+        // Fade out the content of the first page
+        $('#first-page-content').fadeOut(1000, function() {
+            // Gradually change the background color to white
+            setTimeout(function() {
+                $('body').css('background-color', '#eee');
+                // After background color transition completes, redirect to the second page
+                setTimeout(function() {
+                    window.location.href = '../index.html';
+                }, 1000);
+            }, 500); // Delay changing the background color by 500ms
+        });
     } else {
         // If the input does not match the specific word, provide feedback to the user
         alert("Please enter the correct word.");
