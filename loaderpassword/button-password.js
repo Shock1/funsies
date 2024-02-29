@@ -20,7 +20,7 @@ $(".hero-btn .btn").click(function () {
                 $('body').css('background-color', '#eee');
                 // After background color transition completes, redirect to the second page
                 setTimeout(function() {
-                    window.location.href = '../index.html';
+                    window.location.href = '../fixedindex/fixedindex.html';
                 }, 1000);
             }, 500); // Delay changing the background color by 500ms
         });
