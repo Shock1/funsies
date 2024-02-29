@@ -9,12 +9,14 @@ body {
   font-family: "Anton", sans-serif;
   justify-content: center;
   perspective: 1300px;
-  background: rgb(255,255,255);
+  background-color: #fbeffb;
+
+/*  background: rgb(255,255,255);
   background: -moz-linear-gradient(36deg, rgba(255,255,255,1) 0%, rgba(255,233,249,1) 53%, rgba(247,228,228,1) 100%);
   background: -webkit-linear-gradient(36deg, rgba(255,255,255,1) 0%, rgba(255,233,249,1) 53%, rgba(247,228,228,1) 100%);
   background: linear-gradient(36deg, rgba(255,255,255,1) 0%, rgba(255,233,249,1) 53%, rgba(247,228,228,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#f7e4e4",GradientType=1);
-}
+*/}
 
 
 .delay-content{
