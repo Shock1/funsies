@@ -13,6 +13,7 @@ $(".hero-btn .btn").click(function () {
     var specificWord = "lovlove you"; // Replace "yourword" with the specific word
 
     if (userInput === specificWord) {
+        sessionStorage.setItem("authenticated", "true");
         // Fade out the content of the first page
         $('#first-page-content').fadeOut(1000, function() {
             // Gradually change the background color to white

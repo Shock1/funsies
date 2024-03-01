@@ -541,6 +541,14 @@
   <img class= "polariod-photo" style="position: absolute; transform: rotate(8deg); top: 75%; left: 77%;" src="IMG_6600.jpg" alt="Us in skies" width="60" height="85">
   <img class= "polariod-photo" style="position: absolute; transform: rotate(11deg); top: 79%; left: 34%;" src="IMG_6602.jpg" alt="Us in skies" width="60" height="85">
 
-
+  <script src="script.js"></script>
+  <script>
+    // Check if the user is authenticated
+    var authenticated = sessionStorage.getItem("authenticated");
+    if (!authenticated || authenticated !== "true") {
+      // If not authenticated, redirect to the landing page
+      window.location.href = "../index.html";
+    }
+  </script>
   </body>
 </html>
