@@ -544,11 +544,13 @@
   <script src="script.js"></script>
   <script>
     // Check if the user is authenticated
-    var authenticated = sessionStorage.getItem("authenticated");
-    if (!authenticated || authenticated !== "true") {
-      // If not authenticated, redirect to the landing page
-      window.location.href = "../index.html";
-    }
-  </script>
+var authenticated = sessionStorage.getItem("authenticated");
+console.log(authenticated); // Log the value of the authenticated variable
+if (!authenticated || authenticated !== "true") {
+  // If not authenticated, redirect to the landing page
+  window.location.href = "../index.html";
+  console.log(not authenticated);
+}
+</script>
   </body>
 </html>
