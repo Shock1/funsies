@@ -25,8 +25,10 @@ svg{
   border-radius: 8px;
 }
 .heart{
-  -webkit-animation: heartBeat 1s infinite;
-          animation: heartBeat 1s infinite;
+/*-webkit-animation: heartBeat 1s infinite;
+          animation: heartBeat 1s infinite;*/
+  -webkit-animation: heartBeat 1.5s infinite;
+          animation: heartBeat 1.5s infinite;
   -webkit-transform-origin: center;
       -ms-transform-origin: center;
           transform-origin: center;
@@ -44,22 +46,28 @@ svg{
   }
 }
 .heart1{
-  -webkit-animation: sizeUp 2s 0.5s infinite forwards;
-          animation: sizeUp 2s 0.5s infinite forwards;
+/*-webkit-animation: sizeUp 2s 0.5s infinite forwards;
+          animation: sizeUp 2s 0.5s infinite forwards;*/
+  -webkit-animation: sizeUp 3s 0.5s infinite forwards;
+          animation: sizeUp 3s 0.5s infinite forwards;
   -webkit-transform-origin: center;
       -ms-transform-origin: center;
           transform-origin: center;
 }
 .heart2{
-  -webkit-animation: sizeUp 2s 1s infinite forwards;
-          animation: sizeUp 2s 1s infinite forwards;
+/*-webkit-animation: sizeUp 2s 1s infinite forwards;
+          animation: sizeUp 2s 1s infinite forwards;*/
+  -webkit-animation: sizeUp 3s 1s infinite forwards;
+          animation: sizeUp 3s 1s infinite forwards;
   -webkit-transform-origin: center;
       -ms-transform-origin: center;
           transform-origin: center;
 }
 .heart3{
-  -webkit-animation: sizeUp 2s 1.5s infinite forwards;
-          animation: sizeUp 2s 1.5s infinite forwards;
+/*-webkit-animation: sizeUp 2s 0.5s infinite forwards;
+          animation: sizeUp 2s 1.5s infinite forwards;*/
+  -webkit-animation: sizeUp 3s 1.5s infinite forwards;
+          animation: sizeUp 3s 1.5s infinite forwards;
   -webkit-transform-origin: center;
       -ms-transform-origin: center;
           transform-origin: center;
