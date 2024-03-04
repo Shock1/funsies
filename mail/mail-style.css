@@ -14,9 +14,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-/*  opacity: 0;*/
+  opacity: 0;
 }
-/*
+
 .fade-in {
   animation: fadeInAnimation 1.5s ease-in forwards;
 }
@@ -29,7 +29,7 @@ body {
     opacity: 1;
   }
 }
-*/
+
 .container {
   position: relative;
   top: 0vmin;
