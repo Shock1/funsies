@@ -24,11 +24,6 @@ body {
   animation: fade-in 3s ease-in forwards 6s;
 }
 
-/*.delay-falling-hearts{
-  opacity: 0;
-  animation: fade-in 1s ease-in forwards 3s;
-}
-*/
 .polariod-photo{
   border: 7px solid #fff;
   opacity: 0;
@@ -53,6 +48,7 @@ body {
   transform: rotateX(-15deg);
   position: absolute;
   transform-style: preserve-3d;
+
 }
 
 .chocolate_rains div{
