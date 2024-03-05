@@ -1,8 +1,9 @@
 $(".hero-btn").click(function () {
-  
+    // Check if the input field contains the specific word
     var userInput = $("#name").val().trim().toLowerCase(); // Using #name to target the input field
-    var specificWord = "lovlove you"; // Replace "yourword" with the specific word
-    if (userInput === specificWord) {
+    var specificWords = ["lovlove you", "lovloveyou"]; // Array containing the specific words
+
+    if (specificWords.some(word => userInput.includes(word))) {
     
     if (!$(".hero-btn").parent().hasClass("active")) {
     $(this).parent().stop().addClass("active");
@@ -16,9 +17,9 @@ $(".hero-btn").click(function () {
 $(".hero-btn .btn").click(function () {
     // Check if the input field contains the specific word
     var userInput = $("#name").val().trim().toLowerCase(); // Using #name to target the input field
-    var specificWord = "lovlove you"; // Replace "yourword" with the specific word
+    var specificWords = ["lovlove you", "lovloveyou"]; // Array containing the specific words
 
-    if (userInput === specificWord) {
+    if (specificWords.some(word => userInput.includes(word))) {
 
         sessionStorage.setItem("authenticated", "true");
         // Fade out the content of the first page
@@ -33,10 +34,11 @@ $(".hero-btn .btn").click(function () {
             }, 500); // Delay changing the background color by 500ms
         });
     } else {
-        // If the input does not match the specific word, provide feedback to the user
+        // If the input does not match any of the specific words, provide feedback to the user
         alert("Please enter the correct word.");
     }
 });
+
 
 
 document.querySelector('.question-mark').addEventListener('click', function(event) {
