@@ -26,7 +26,7 @@ $(".hero-btn .btn").click(function () {
         $('#first-page-content').fadeOut(1000, function() {
             // Gradually change the background color to white
             setTimeout(function() {
-                $('body').css('background-color', '#fbeffb');
+                $('body').css('background-color', '#e9eaf5');
                 // After background color transition completes, redirect to the second page
                 setTimeout(function() {
                     window.location.href = 'main/index.html';
