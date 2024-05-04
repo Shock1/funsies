@@ -24,10 +24,12 @@ const colors = [
 let rainbowEnd = "";
 let rainbowEnd2 = "";
 colors.reverse().forEach((c, i) => {
-  rainbowEnd += `,0 ${(i - 5) * 5}vh ${i * 2}px ${c}`;
+  rainbowEnd += `,0 ${(i - 5) * 2}vh ${i * 2}px ${c}`;
+  /*rainbowEnd += `,0 ${(i - 5) * 5}vh ${i * 2}px ${c}`;*/
 });
 colors.forEach((c, i) => {
-  rainbowEnd2 += `,0 ${(i - 5) * -5}vh ${i * 2}px ${c}`;
+  rainbowEnd2 += `,0 ${(i - 5) * -2}vh ${i * 2}px ${c}`;
+  // rainbowEnd2 += `,0 ${(i - 5) * -5}vh ${i * 2}px ${c}`;
 });
 
 rainbowEnd = rainbowEnd.substring(1);

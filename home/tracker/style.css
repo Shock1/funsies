@@ -1,9 +1,15 @@
+@font-face {
+    font-family: 'Script'; /*a name to be used later*/
+    src: url('Courgette-Regular.ttf'); /*URL to font*/
+}
+
 body {
   overflow: hidden;
   display: grid;
   place-items: center;
   height: 100vh;
   background: #57008a;
+  font-family: "Script", sans-serif;
 }
 
 h1 {
@@ -23,5 +29,5 @@ span:not(.ws) {
 }
 
 h2 {
-  color: white;
+  color: #350353;
 }
