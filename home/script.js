@@ -17,7 +17,7 @@ var pages = [
     "thoughts/shoulders.html",
     "thoughts/imissyou.html",
     "thoughts/specialtome.html",
-    "thoughts/words.html",
+    "thoughts/amongstthose.html",
     "thoughts/worthit.html"
     // Add more pages as needed
 ];
