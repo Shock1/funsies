@@ -15,7 +15,7 @@ var pages = [
     "thoughts/heavenly.html",
     "thoughts/livefor.html",
     "thoughts/shoulders.html",
-    "thoughts/smile.html",
+    "thoughts/imissyou.html",
     "thoughts/specialtome.html",
     "thoughts/words.html",
     "thoughts/worthit.html"
