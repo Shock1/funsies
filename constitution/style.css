@@ -56,7 +56,7 @@ August 2021 : ok on Chrome v92+, Firefox v90+, Edge v92+
 
 /* v2.3 : folds added , remove this part if you don't want them
    I'll try to make it look like crumpled paper if I have time. */
-#parchment:after {
+/*#parchment:after {
   content: "";
   position: absolute;
   top: 0;
@@ -65,7 +65,7 @@ August 2021 : ok on Chrome v92+, Firefox v90+, Edge v92+
   height: 100%;
   background: conic-gradient(#fff3, #fff0 2% 24%, #fff2 25%, #4321 0, #0000 27% 48%, #9632 50%, #fff2 0, #fff0 52% 73%, #9632 75%, #fff3 0, #fff0 78% 97%, #9632);
 }
-
+*/
 main p {
   font-size: 2.25em;
   color: #7F3300;
