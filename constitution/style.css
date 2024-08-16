@@ -101,12 +101,19 @@ div p:not(:first-child)::first-letter {
 }
 
 .cachet {
-  /* image width = 210px and height = 250px */
-  /*  5 is one common denominator 210 = 5 * 42 */
-  width: calc((100vw * 5) / 42);
   height: auto; /* Height is auto ajusted */
   margin-top: 4rem;
   margin-left: auto;
+}
+
+.bananabread {
+    /* image width = 210px and height = 250px */
+    width: calc((100vw * 5) / 42);
+    /*  5 is one common denominator 210 = 5 * 42 */
+}
+
+.pumpkin {
+    width: calc((100vw * 5) / 78);
 }
 
 #labarum img, .cachet img {
