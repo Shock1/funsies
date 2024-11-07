@@ -1,0 +1,87 @@
+@font-face {
+    font-family: 'Script'; /*a name to be used later*/
+    src: url('Courgette-Regular.ttf'); /*URL to font*/
+}
+
+body {
+background-color: #141723 ;
+/* background-color: #FFF ; */
+ overflow: visible;
+	text-align:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Script", sans-serif;
+
+}
+
+body,
+html {
+ height: 100%;
+ width: 100%;
+ margin: 0;
+ padding: 0;
+}
+:root {
+	--line-stroke: #0074b3;
+	/* --grid-stroke: #00adef; */
+	--line-stroke-width: 1.5;
+	--circle-fill: #00adef;
+	--circle-stroke: #0074b3;
+}
+
+svg {
+	position: absolute;
+ width: 100%;
+ height: 100%;
+ visibility: hidden;
+ overflow: visible;
+}
+.trailLine {
+	stroke:var(--line-stroke);
+	stroke-width: var(--line-stroke-width);
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: 4 10
+}
+.gridRect {
+	stroke:var(--circle-stroke);
+	
+	
+}
+#grid {
+	
+	opacity: 0.085;
+	
+}
+#glowAlpha {
+	flood-color: var(--circle-stroke)
+}
+.plane {
+	fill:#CCC;
+}
+
+
+.centered-heading {
+	color: #ffffff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  text-align: center;
+  z-index: 10;
+  opacity: 0;
+  animation: fade-in 2s ease-in forwards 0.5s; /* Ensures it's above other content, if needed */
+}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
