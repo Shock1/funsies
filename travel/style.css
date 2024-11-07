@@ -1,67 +1,67 @@
+
 @font-face {
     font-family: 'Script'; /*a name to be used later*/
     src: url('Courgette-Regular.ttf'); /*URL to font*/
 }
 
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
+.gradient-background {
+  background: linear-gradient(122deg,#486ab8,#111539,#4773c7,#f9d606,#f9df06);
+  background-size: 300% 300%;
+  animation: gradient-animation 35s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
 body {
-background-color: #141723 ;
-/* background-color: #FFF ; */
- overflow: visible;
-	text-align:center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Script", sans-serif;
-
+    height: 100%;
+    width: 100%;
+    background: #1b1d21;
+    background-image: url(http://www.transparenttextures.com/patterns/carbon-fibre.png);
+  	font-family: "Script", sans-serif;
+  
 }
 
-body,
-html {
- height: 100%;
- width: 100%;
- margin: 0;
- padding: 0;
-}
-:root {
-	--line-stroke: #0074b3;
-	/* --grid-stroke: #00adef; */
-	--line-stroke-width: 1.5;
-	--circle-fill: #00adef;
-	--circle-stroke: #0074b3;
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-svg {
-	position: absolute;
- width: 100%;
- height: 100%;
- visibility: hidden;
- overflow: visible;
-}
-.trailLine {
-	stroke:var(--line-stroke);
-	stroke-width: var(--line-stroke-width);
-	fill: none;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-	stroke-dasharray: 4 10
-}
-.gridRect {
-	stroke:var(--circle-stroke);
-	
-	
-}
-#grid {
-	
-	opacity: 0.085;
-	
-}
-#glowAlpha {
-	flood-color: var(--circle-stroke)
-}
-.plane {
-	fill:#CCC;
+
+h1 {
+ font-family: "Script", sans-serif;
+font-size: 92px;
+padding:  5px;
+text-align: center;
+text-rendering: optimizeLegibility;
+} 
+
+.txtshadow{
+  color: #000;
+  text-shadow: 0 0 1px #3D3D3D;
 }
 
+#canvas-container{
+  text-align: center;
+}
 
 .centered-heading {
 	color: #ffffff;
@@ -74,14 +74,4 @@ svg {
   z-index: 10;
   opacity: 0;
   animation: fade-in 2s ease-in forwards 0.5s; /* Ensures it's above other content, if needed */
-}
-
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }

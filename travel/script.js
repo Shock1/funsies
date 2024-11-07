@@ -1,103 +1,135 @@
-let select = (s) => document.querySelector(s),
-	selectAll = (s) => document.querySelectorAll(s),
-	mainSVG = select("#mainSVG"),
-	trailLine = select("#trailLine"),
-	numPoints = 400,
-	svgHeight = 600,
-	height = svgHeight,
-	allPlanes = gsap.utils.toArray(".plane"),
-	allTrailLines = selectAll(".trailLine"),
-	allTrailPoints = [],
-	planeColorArray = [
-		"#04BCE8",
-		"#EA6360",
-		"#4EBE92",
-		"#A83395",
-		"#4A52A6",
-		"#F2CD5D"
-	],
-	planeWidth = allPlanes[0].getBBox().width,
-	pivotFrame = 60;
+(function () {
 
-gsap.defaults({ lazy: true });
+    var unit= 50,canvas, context, canvas2, context2,
+        height, width, xAxis, yAxis,
+        draw;
 
-gsap.set("svg", {
-	visibility: "visible"
-});
-gsap.set(allPlanes, {
-	transformOrigin: "50% 100%",
-	yPercent: -20
-});
-let p = CustomEase.create(
-	"trail",
-	"M0,0 C0,0 0.08957,0.04997 0.14563,0.07332 0.17361,0.08497 0.19406,0.08816 0.22447,0.09346 0.25234,0.09831 0.27245,0.10281 0.29876,0.1 0.3304,0.09662 0.3574,0.09206 0.38526,0.07627 0.46146,0.0331 0.50906,-0.01658 0.58698,-0.06332 0.61735,-0.08154 0.64322,-0.09168 0.67604,-0.09815 0.70315,-0.10349 0.72556,-0.09999 0.75503,-0.09644 0.7862,-0.09269 0.8064,-0.0881 0.83671,-0.07879 0.87049,-0.06842 0.89148,-0.06013 0.92338,-0.04473 0.95378,-0.03007 1,0 1,0 "
-);
+    /**
+     * Init function.Initialize variables and begin the animation.
+     */
+    function init() {
 
-const swayPlane = (_id) => {
-	gsap.set(allPlanes[_id], {
-		x: allTrailPoints[_id][0].x - planeWidth / 2,
-		y: allTrailPoints[_id][0].y - planeWidth
-	});
-	gsap.to(allPlanes[_id], {
-		duration: 0.1,
-		rotation: (planeInitArray[_id].x - allTrailPoints[_id][pivotFrame].x) * 0.72,
-		ease: "sine.inOut"
-	});
-};
+        canvas = document.getElementById("sineCanvas");
+        context = canvas.getContext("2d");
 
-let planeInitArray = [];
-let duration = gsap.utils.random(5, 20);
-for (var j = 0; j < allPlanes.length; j++) {
-	let trailLine = allTrailLines[j];
-	let pointX = gsap.utils.random(250, 350);
-	let pointArray = [];
-	let heightMultiplier = gsap.utils.random(0.11, 0.8);
-	gsap.set(allTrailLines[j], {
-		stroke: planeColorArray[j]
-	});
+        height = canvas.height;
+        width = canvas.width;
 
-	for (let i = 0; i < numPoints; i++) {
-		let point = trailLine.points.appendItem(mainSVG.createSVGPoint());
-		pointArray.push(point);
-		point.x = pointX;
-		point.y = height * heightMultiplier + i * (height / numPoints);
-	}
-	allTrailPoints.push(pointArray);
-	planeInitArray.push({ x: pointArray[0].x, y: pointArray[0].y });
+        xAxis = Math.floor(height / 2);
+        yAxis = Math.floor(width / 4);
 
-	let tl = gsap.timeline();
-	tl
-		.to(allTrailPoints[j], {
-			duration: gsap.utils.random(7, 14),
-			x: "-=" + gsap.utils.random(-600, 600),
-			stagger: {
-				each: duration / 1000,
-				repeat: -1
-			},
-			onUpdate: swayPlane,
-			onUpdateParams: [j],
-			ease: "trail"
-		})
-		.seek(gsap.utils.random(300, 1000));
-}
+        context.save();
+        draw();
 
-let extraTl = gsap.timeline();
-extraTl.to("#grid", {
-	duration: 1,
-	y: "+=40",
-	ease: "none",
-	repeat: -1
-});
+    }
 
-allTrailLines.forEach(function (i, c) {
-	let tl = gsap.timeline();
-	tl.to(i, {
-		strokeDashoffset: -(14 * 4),
-		duration: gsap.utils.random(0.5, 0.76),
-		repeat: -1,
-		ease: "none"
-	});
-	extraTl.add(tl, 0);
-});
+    /**
+     * Draw animation function.
+     * 
+     * This function draws one frame of the animation, waits 25ms, and then calls
+     * itself again.
+     */
+    draw = function () {
+        // Clear the canvas
+        context.clearRect(0, 0, width, height);
+        
+        // BLUE gradient
+        grd = context.createLinearGradient(0.000, 0.000, 800.000, 0.000);
+        grd.addColorStop(0, 'rgba(189, 106, 155, 1.000)');
+        grd.addColorStop(1, 'rgba(189, 106, 155, 0.00)');
+        context.strokeStyle = grd;
+        context.lineWidth = 2;
+        // BLUE sine
+        context.beginPath();
+        drawSine(draw.t, unit, 0, 1);
+        context.stroke();
+        //BLUE plane
+        drawPlane(draw.t, unit, 0, 1);
+        
+        //GREEN gradient
+        grd = context.createLinearGradient(0.000, 0.000, 800.000, 0.000);
+        grd.addColorStop(0, 'rgba(151, 204, 18, 1.000)');
+        grd.addColorStop(1, 'rgba(151, 204, 18, 0.000)');
+        context.strokeStyle = grd;
+        // GREEN sine
+        context.beginPath();
+        drawSine(draw.t, unit*2, 50, -1);
+        context.stroke();
+        // GREEN plane
+        drawPlane(draw.t, unit*2, 50, -1 );
+        
+        //YELLOW Gradient
+        grd = context.createLinearGradient(0.000, 0.000, 800.000, 0.000);
+        grd.addColorStop(0,  'rgba(245, 223, 22, 1.000)');
+        grd.addColorStop(1, 'rgba(245, 223, 22, 0.0)');
+        context.strokeStyle = grd;
+        //YELLOW sine
+        context.beginPath();
+        drawSine(draw.t, unit*2, 100, 1);
+        context.stroke();
+        //YELLOW plane
+        drawPlane(draw.t, unit*2, 100, 1 );
 
-//gsap.globalTimeline.timeScale(0.25)
+        //RED Gradient
+        grd = context.createLinearGradient(0.000, 0.000, 800.000, 0.000);
+        grd.addColorStop(0,  'rgba(204, 63, 24, 1.000)');
+        grd.addColorStop(1, 'rgba(204, 63, 24, 0.000)');
+        context.strokeStyle = grd;
+        //RED sine
+        context.beginPath();
+        drawSine(draw.t, unit*1/150, 150, -1);
+        context.stroke();
+        //RED plane
+        drawPlane(draw.t, unit*1/150, 150, -1 );
+        
+        // Restore original styles
+        context.restore();
+
+        
+        // Update the time and draw again
+        draw.seconds = draw.seconds - .007;
+        draw.t = draw.seconds * Math.PI;
+        setTimeout(draw , 35);
+    };
+
+    draw.seconds = 0;
+    draw.t = 0;
+
+
+    /**
+     * Function to draw sine
+     * 
+     * The sine curve is drawn in 10px segments starting at the origin. 
+     */
+    function drawSine(t, unitval, offset, direction) {
+
+        // Loop to draw segments
+        for (i = yAxis; i <= width; i += 10) {
+            x = t + (-yAxis + i) / unitval;
+            y = Math.sin(x) * direction;
+            context.lineTo(i + offset , (unitval / 3) * y + xAxis);
+        }
+    }
+
+
+
+    /**
+     * Function to draw arrow
+     */
+    function drawPlane(t, unitVal, offset, direction) {
+
+        // Cache position of arrow on the circle
+        var y = xAxis + (unitVal / 3) * Math.sin(t) * direction;
+        var img = new Image();
+        img.src = "https://i.imgur.com/LsYmdkL.png";
+        //img.src = "https://i.imgur.com/bYuAw4C.png";
+        // Draw yAxis bead
+        context.beginPath();
+        context.drawImage(img, yAxis - 29  + offset , y - 16 );
+        //context.arc(yAxis, y, 5, 0, 2*Math.PI, false);
+        context.stroke();
+    }
+
+    init();
+
+})();
