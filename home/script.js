@@ -10,16 +10,16 @@ if (!authenticated || authenticated !== "true") {
 
 // Array containing the paths to your HTML pages
 var pages = [
-    // "thoughts/drowning.html",
-    // "thoughts/foreverchapter.html",
-    // "thoughts/heavenly.html",
-    // "thoughts/livefor.html",
-    // "thoughts/shoulders.html",
-    // "thoughts/imissyou.html",
-    // "thoughts/specialtome.html",
-    // "thoughts/amongstthose.html",
-    // "thoughts/worthit.html"
-    "../travel/index.html"
+    "thoughts/drowning.html",
+    "thoughts/foreverchapter.html",
+    "thoughts/heavenly.html",
+    "thoughts/livefor.html",
+    "thoughts/shoulders.html",
+    "thoughts/imissyou.html",
+    "thoughts/specialtome.html",
+    "thoughts/amongstthose.html",
+    "thoughts/worthit.html"
+    // "../travel/index.html"
     // Add more pages as needed
 ];
 
