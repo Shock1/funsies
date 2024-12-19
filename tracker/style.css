@@ -13,7 +13,14 @@ body {
 }
 
 h1 {
-  font-size: 8vw;
+  font-size: 7vw;
+  font-weight: 400;
+  color: #fff0;
+  display: flex;
+  width: 90%;
+}
+h1 #year{
+  font-size: 10vw;
   font-weight: 400;
   color: #fff0;
   display: flex;
