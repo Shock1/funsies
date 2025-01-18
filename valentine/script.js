@@ -1,6 +1,5 @@
-import { Pane } from 'https://cdn.skypack.dev/tweakpane@4.0.4'
-import gsap from 'https://cdn.skypack.dev/gsap@3.12.0'
-import ScrollTrigger from 'https://cdn.skypack.dev/gsap@3.12.0/ScrollTrigger'
+import gsap from 'https://cdn.skypack.dev/gsap@3.12.0';
+import ScrollTrigger from 'https://cdn.skypack.dev/gsap@3.12.0/ScrollTrigger';
 
 const config = {
   theme: 'dark',
@@ -10,99 +9,32 @@ const config = {
   end: gsap.utils.random(900, 1000, 1),
   scroll: true,
   debug: false,
-}
+};
 
-const ctrl = new Pane({
-  title: 'Config',
-  expanded: false,
-})
+let items;
+let scrollerScrub;
+let dimmerScrub;
+let chromaEntry;
+let chromaExit;
 
-let items
-let scrollerScrub
-let dimmerScrub
-let chromaEntry
-let chromaExit
+// Wait for the DOM to be fully loaded before running animations
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM fully loaded');
 
-const update = () => {
-  document.documentElement.dataset.theme = config.theme
-  document.documentElement.dataset.syncScrollbar = config.scroll
-  document.documentElement.dataset.animate = config.animate
-  document.documentElement.dataset.snap = config.snap
-  document.documentElement.dataset.debug = config.debug
-  document.documentElement.style.setProperty('--start', config.start)
-  document.documentElement.style.setProperty('--hue', config.start)
-  document.documentElement.style.setProperty('--end', config.end)
-
-  if (!config.animate) {
-    chromaEntry?.scrollTrigger.disable(true, false)
-    chromaExit?.scrollTrigger.disable(true, false)
-    dimmerScrub?.disable(true, false)
-    scrollerScrub?.disable(true, false)
-    gsap.set(items, { opacity: 1 })
-    gsap.set(document.documentElement, { '--chroma': 0 })
+  // Validate and initialize items for animation
+  items = gsap.utils.toArray('ul li');
+  if (items.length === 0) {
+    console.error("No items found matching the selector 'ul li'");
+    return; // Stop execution if no items are found
   } else {
-    gsap.set(items, { opacity: (i) => (i !== 0 ? 0.2 : 1) })
-    dimmerScrub.enable(true, true)
-    scrollerScrub.enable(true, true)
-    chromaEntry.scrollTrigger.enable(true, true)
-    chromaExit.scrollTrigger.enable(true, true)
+    console.log(`Found ${items.length} items to animate.`);
   }
-}
 
-const sync = (event) => {
-  if (
-    !document.startViewTransition ||
-    event.target.controller.view.labelElement.innerText !== 'Theme'
-  )
-    return update()
-  document.startViewTransition(() => update())
-}
-ctrl.addBinding(config, 'animate', {
-  label: 'Animate',
-})
-ctrl.addBinding(config, 'snap', {
-  label: 'Snap',
-})
-ctrl.addBinding(config, 'start', {
-  label: 'Hue Start',
-  min: 0,
-  max: 1000,
-  step: 1,
-})
-ctrl.addBinding(config, 'end', {
-  label: 'Hue End',
-  min: 0,
-  max: 1000,
-  step: 1,
-})
-ctrl.addBinding(config, 'scroll', {
-  label: 'Scrollbar',
-})
-ctrl.addBinding(config, 'debug', {
-  label: 'Debug',
-})
+  // Register ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
 
-ctrl.addBinding(config, 'theme', {
-  label: 'Theme',
-  options: {
-    System: 'system',
-    Light: 'light',
-    Dark: 'dark',
-  },
-})
-
-ctrl.on('change', sync)
-
-// backfill the scroll functionality with GSAP
-if (
-  !CSS.supports('(animation-timeline: scroll()) and (animation-range: 0% 100%)')
-) {
-  gsap.registerPlugin(ScrollTrigger)
-
-  // animate the items with GSAP if there's no CSS support
-  items = gsap.utils.toArray('ul li')
-
-  gsap.set(items, { opacity: (i) => (i !== 0 ? 0.2 : 1) })
+  // Initialize animations
+  gsap.set(items, { opacity: (i) => (i !== 0 ? 0.2 : 1) });
 
   const dimmer = gsap
     .timeline()
@@ -117,7 +49,7 @@ if (
         stagger: 0.5,
       },
       0
-    )
+    );
 
   dimmerScrub = ScrollTrigger.create({
     trigger: items[0],
@@ -126,9 +58,8 @@ if (
     end: 'center center',
     animation: dimmer,
     scrub: 0.2,
-  })
+  });
 
-  // register scrollbar changer
   const scroller = gsap.timeline().fromTo(
     document.documentElement,
     {
@@ -138,7 +69,7 @@ if (
       '--hue': config.end,
       ease: 'none',
     }
-  )
+  );
 
   scrollerScrub = ScrollTrigger.create({
     trigger: items[0],
@@ -147,7 +78,7 @@ if (
     end: 'center center',
     animation: scroller,
     scrub: 0.2,
-  })
+  });
 
   chromaEntry = gsap.fromTo(
     document.documentElement,
@@ -164,7 +95,8 @@ if (
         end: 'center center',
       },
     }
-  )
+  );
+
   chromaExit = gsap.fromTo(
     document.documentElement,
     {
@@ -180,7 +112,35 @@ if (
         end: 'center center-=40',
       },
     }
-  )
-}
-// run it
-update()
+  );
+
+  console.log('GSAP animations initialized');
+});
+
+// Attach button functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const yesButton = document.querySelector('.yes-button');
+  const noButton = document.querySelector('.no-button');
+
+  if (!yesButton || !noButton) {
+    console.error('Buttons not found in the DOM');
+    return;
+  }
+
+  noButton.addEventListener('click', () => {
+    console.log('No button clicked');
+
+    const currentFontSize = parseFloat(
+      window.getComputedStyle(yesButton).fontSize
+    );
+    const currentPadding = parseFloat(
+      window.getComputedStyle(yesButton).padding
+    );
+
+    yesButton.style.fontSize = `${currentFontSize + 10}px`;
+    yesButton.style.padding = `${currentPadding + 10}px ${currentPadding + 10}px`;
+
+    console.log(`Updated font size: ${yesButton.style.fontSize}`);
+    console.log(`Updated padding: ${yesButton.style.padding}`);
+  });
+});
