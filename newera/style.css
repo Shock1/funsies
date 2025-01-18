@@ -151,6 +151,6 @@ main {
 
     &:nth-child(3) { left: 20%; }
     &:nth-child(4) { left: calc(20% + 140px); }
-    &:nth-child(5) { left: calc(20% + 280px); width: 30px}
+    &:nth-child(5) { left: calc(20% + 280px); width: 35px}
   }
 }
