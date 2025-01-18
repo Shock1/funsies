@@ -145,8 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
       window.getComputedStyle(yesButton).padding
     );
 
-    yesButton.style.fontSize = `${currentFontSize + 3}px`;
-    yesButton.style.padding = `${currentPadding + 3}px ${currentPadding + 3}px`;
+    yesButton.style.fontSize = `${currentFontSize + 1}px`;
+    yesButton.style.padding = `${currentPadding + 1}px ${currentPadding + 1}px`;
 
     console.log(`Updated font size: ${yesButton.style.fontSize}`);
     console.log(`Updated padding: ${yesButton.style.padding}`);

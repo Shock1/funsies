@@ -345,7 +345,7 @@ div.tp-dfwv {
   font-family: 'Geist', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
   color: white; /* Ensure text color contrasts with the background */
   background: none; /* Remove background-clip effects */
-  font-size: 2rem; /* Adjust font size as needed */
+  font-size: 1.1rem; /* Adjust font size as needed */
   font-weight: bold;
   margin-bottom: 1rem; /* Space between "test" and buttons */
   text-align: center;
@@ -367,6 +367,7 @@ button {
   font-weight: 700;
 }
 
+/* Adjust for large screens */
 @media (min-width: 900px) {
   button {
     min-width: 200px !important;
@@ -375,8 +376,17 @@ button {
     min-height: 85px !important;
     font-size: 2.1rem !important;
   }
+  .test-text {
+    font-size: 2.1rem !important;
+  }
 }
 
+/* Adjust for small screens */
+@media (max-width: 600px) { /* You can adjust the max-width as needed for your definition of small screens */
+    section:last-of-type {
+      min-height: 30vh; /* Set to 80vh for small screens */
+    }
+  }
 
 .shadow {
  position: absolute;
