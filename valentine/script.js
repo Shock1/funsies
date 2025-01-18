@@ -11,47 +11,55 @@ const config = {
   debug: false,
 };
 
-let items;
-let scrollerScrub;
-let dimmerScrub;
-let chromaEntry;
-let chromaExit;
+// Array of phrases for the "test" text
+const phrases = [
+  "No",
+  "Must be a mistake",
+  "It's the green one😏",
+  "Wrong button, pumpkin😌",
+  "That one doesn't work🧐",
+  "It was really for decor🤨",
+  "Солнышко, на зеленую🟩",
+  "Нет?",
+  "Xммммм",
+  "Boo, AAH MY HEART😣",
+  "I'm feeling faint😖",
+  "Call 911",
+  "Tell my mom I love her",
+  "I can only be saved by pressing the green button😵",
+  "Or boobies👀",
+  "😏",
+  "🤔",
+  "AAH I'm fading away😵",
+  "I can see the light",
+  "Es lo que es",
+  "🪦",
+  "👻",
+  "Press green to bring me back to life😌", //Final
+];
 
-// Wait for the DOM to be fully loaded before running animations
+let currentPhraseIndex = -1; // Start with no phrase displayed
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded');
 
-  // Validate and initialize items for animation
-  items = gsap.utils.toArray('ul li');
+  // Initialize GSAP animations (unchanged from original)
+  const items = gsap.utils.toArray('ul li');
   if (items.length === 0) {
     console.error("No items found matching the selector 'ul li'");
     return; // Stop execution if no items are found
-  } else {
-    console.log(`Found ${items.length} items to animate.`);
   }
 
-  // Register ScrollTrigger plugin
   gsap.registerPlugin(ScrollTrigger);
 
-  // Initialize animations
   gsap.set(items, { opacity: (i) => (i !== 0 ? 0.2 : 1) });
 
   const dimmer = gsap
     .timeline()
-    .to(items.slice(1), {
-      opacity: 1,
-      stagger: 0.5,
-    })
-    .to(
-      items.slice(0, items.length - 1),
-      {
-        opacity: 0.2,
-        stagger: 0.5,
-      },
-      0
-    );
+    .to(items.slice(1), { opacity: 1, stagger: 0.5 })
+    .to(items.slice(0, items.length - 1), { opacity: 0.2, stagger: 0.5 }, 0);
 
-  dimmerScrub = ScrollTrigger.create({
+  ScrollTrigger.create({
     trigger: items[0],
     endTrigger: items[items.length - 1],
     start: 'center center',
@@ -62,16 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const scroller = gsap.timeline().fromTo(
     document.documentElement,
-    {
-      '--hue': config.start,
-    },
-    {
-      '--hue': config.end,
-      ease: 'none',
-    }
+    { '--hue': config.start },
+    { '--hue': config.end, ease: 'none' }
   );
 
-  scrollerScrub = ScrollTrigger.create({
+  ScrollTrigger.create({
     trigger: items[0],
     endTrigger: items[items.length - 1],
     start: 'center center',
@@ -80,11 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
     scrub: 0.2,
   });
 
-  chromaEntry = gsap.fromTo(
+  gsap.fromTo(
     document.documentElement,
-    {
-      '--chroma': 0,
-    },
+    { '--chroma': 0 },
     {
       '--chroma': 0.3,
       ease: 'none',
@@ -97,11 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   );
 
-  chromaExit = gsap.fromTo(
+  gsap.fromTo(
     document.documentElement,
-    {
-      '--chroma': 0.3,
-    },
+    { '--chroma': 0.3 },
     {
       '--chroma': 0,
       ease: 'none',
@@ -115,21 +114,30 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 
   console.log('GSAP animations initialized');
-});
 
-// Attach button functionality
-document.addEventListener('DOMContentLoaded', () => {
+  // Attach button functionality
   const yesButton = document.querySelector('.yes-button');
   const noButton = document.querySelector('.no-button');
+  const testText = document.querySelector('.test-text');
 
-  if (!yesButton || !noButton) {
-    console.error('Buttons not found in the DOM');
+  if (!yesButton || !noButton || !testText) {
+    console.error('Buttons or test-text not found in the DOM');
     return;
   }
 
   noButton.addEventListener('click', () => {
     console.log('No button clicked');
 
+    // Update the "test" text if we haven't reached the last phrase
+    if (currentPhraseIndex < phrases.length - 1) {
+      currentPhraseIndex++;
+      testText.textContent = phrases[currentPhraseIndex];
+      testText.style.display = 'block'; // Ensure the text is visible
+    } else {
+      console.log('Final phrase reached. Text will not update further.');
+    }
+
+    // Adjust the Yes button size (this happens regardless of the text)
     const currentFontSize = parseFloat(
       window.getComputedStyle(yesButton).fontSize
     );

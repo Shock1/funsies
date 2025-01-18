@@ -333,9 +333,23 @@ div.tp-dfwv {
 .buttons-div{
   min-height: 20vh;
     display: flex;
-    place-items: baseline;
+    flex-direction: column;
+    align-items: center;
+    /* place-items: baseline; */
     width: 100%;
-    justify-content: center;
+    /* justify-content: center; */
+}
+
+/* Center the test text */
+.test-text {
+  font-family: 'Geist', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  color: white; /* Ensure text color contrasts with the background */
+  background: none; /* Remove background-clip effects */
+  font-size: 2rem; /* Adjust font size as needed */
+  font-weight: bold;
+  margin-bottom: 1rem; /* Space between "test" and buttons */
+  text-align: center;
+  display: none;
 }
 
 
@@ -478,4 +492,3 @@ button:active .shadow {
 button:focus:not(:focus-visible) {
  outline: none;
 }
-                
