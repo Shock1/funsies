@@ -5,18 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>You Can Scroll</title>
+  <title>Home</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
-  <script src="https://cdn.skypack.dev/tweakpane@4.0.4" defer></script>
-  <script src="https://cdn.skypack.dev/gsap@3.12.0" defer></script>
-  <script src="https://cdn.skypack.dev/gsap/ScrollTrigger" defer></script>
-  <script src="script.js" defer></script>
+  <script type="module" src="script.js"></script>
 </head>
 
 <body>
+<!-- Header-->
   <header>
-      <h1 class="fluid">you can<br />scroll.</h1>
+      <h1 class="fluid">Welcome,<br />Boo</h1>
     </header>
     <main>
       <section class="content fluid">
@@ -48,9 +46,35 @@
           <li style="--i: 21">do it.</li>
         </ul>
       </section>
-      <section>
-        <h2 class="fluid">Or you can be <br> be my valentine? ;)</h2>
-      </section>
+<section class="valentine" style="margin-top: 30em;">
+  <h2 class="fluid">
+    Or you can be <br> be my valentine? ;)
+  </h2>
+</section>
+<div class="buttons-div">
+  <div style="min-height: 5em; align-content: center;">
+    <p class="test-text"></p>
+  </div>
+  <div class="buttons-container" style="margin-bottom: 20em;">
+    <button class="yes-button">
+      <span class="shadow"></span>
+      <span class="edge"></span>
+      <span class="front text">Yes</span>
+    </button>
+
+    <button class="no-button" style="margin-left: 5em;">
+      <span class="shadow"></span>
+      <span class="edge"></span>
+      <span class="front text">No</span>
+    </button>
+  </div>
+</div>
+<section class="love-counter">
+  <h2 class="fluid" style="color: #ff084c;">
+    Love Counter:<br>
+    <span id="love-counter" style="color: #0000;">0</span>
+  </h2>
+</section>
     </main>
 </body>
 

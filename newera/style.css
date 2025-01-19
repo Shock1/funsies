@@ -75,7 +75,9 @@
     --lightness: 65%;
   }
   @media (prefers-color-scheme: dark) {
-    --lightness: 75%;
+    :root {
+      --lightness: 75%;
+    }
   }
   ul {
     --step: calc((var(--end) - var(--start)) / (var(--count) - 1));
@@ -130,7 +132,18 @@
     width: 100%;
     padding-left: 5rem;
   }
-  section:last-of-type {
+  section.valentine {
+    min-height: 100vh;
+    display: flex;
+    place-items: center;
+    width: 100%;
+    justify-content: center;
+
+    h2 {
+      --font-level: 6;
+    }
+  }
+  section.love-counter {
     min-height: 100vh;
     display: flex;
     place-items: center;
@@ -325,4 +338,178 @@
 
 div.tp-dfwv {
   position: fixed;
+}
+
+/* Buttons div */
+.buttons-div{
+  min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* place-items: baseline; */
+    width: 100%;
+    /* justify-content: center; */
+}
+
+/* Center the test text */
+.test-text {
+  font-family: 'Geist', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  color: white; /* Ensure text color contrasts with the background */
+  background: none; /* Remove background-clip effects */
+  font-size: 1.1rem; /* Adjust font size as needed */
+  font-weight: bold;
+  margin-bottom: 1rem; /* Space between "test" and buttons */
+  text-align: center;
+  display: none;
+}
+
+
+/* buttons css */
+button {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  touch-action: manipulation;
+  font-weight: 700;
+}
+
+/* Adjust for large screens */
+@media (min-width: 900px) {
+  button {
+    min-width: 200px !important;
+  }
+  button .front {
+    min-height: 85px !important;
+    font-size: 2.1rem !important;
+  }
+  .test-text {
+    font-size: 2.1rem !important;
+  }
+}
+
+/* Adjust for small screens */
+@media (max-width: 600px) { /* You can adjust the max-width as needed for your definition of small screens */
+    section:last-of-type {
+      min-height: 30vh; /* Set to 80vh for small screens */
+    }
+  }
+
+.shadow {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ border-radius: 12px;
+ background: hsl(0deg 0% 0% / 0.25);
+ will-change: transform;
+ transform: translateY(2px);
+ transition: transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+button .front{
+  align-content: center;
+}
+
+/*No button */
+.no-button .edge {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ border-radius: 12px;
+ background: linear-gradient(
+    to left,
+    hsl(340deg 100% 16%) 0%,
+    hsl(340deg 100% 32%) 8%,
+    hsl(340deg 100% 32%) 92%,
+    hsl(340deg 100% 16%) 100%
+  );
+}
+
+.no-button .front {
+ display: block;
+ position: relative;
+ padding: 12px 27px;
+ border-radius: 12px;
+/* font-size: 1.1rem;*/
+ color: white;
+/* background: hsl(345deg 100% 95.51%);*/
+ background: hsl(0deg 0% 0.79%);
+ will-change: transform;
+ transform: translateY(-4px);
+ transition: transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+/*Yes button */
+.yes-button .edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(
+  to left,
+  hsl(140deg 100% 12%) 0%,
+  hsl(140deg 100% 28%) 8%,
+  hsl(140deg 100% 28%) 92%,
+  hsl(140deg 100% 12%) 100%
+  );
+}
+
+.yes-button .front {
+  display: block;
+  position: relative;
+  padding: 12px 27px;
+  border-radius: 12px;
+  color: white;
+/*  background: hsl(145deg 27.67% 88.03%);*/
+  background: hsl(0deg 0% 0.79%);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+
+button:hover {
+ filter: brightness(110%);
+}
+
+button:hover .front {
+ transform: translateY(-6px);
+ transition: transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+button:active .front {
+ transform: translateY(-2px);
+ transition: transform 34ms;
+}
+
+button:hover .shadow {
+ transform: translateY(4px);
+ transition: transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+button:active .shadow {
+ transform: translateY(1px);
+ transition: transform 34ms;
+}
+
+button:focus:not(:focus-visible) {
+ outline: none;
 }
