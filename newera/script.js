@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrub: 0.2,
         trigger: items[0],
         start: 'center center+=40',
-        end: 'center center',
+        end: 'center center+-40',
       },
     }
   );
