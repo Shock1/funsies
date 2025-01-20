@@ -27,7 +27,7 @@ const phrases = [
   "Call 911",
   "Tell my mom I love her",
   "I can only be saved by pressing the green button😵",
-  "Or boobies👀",
+  "Or boobies😮‍💨",
   "😏",
   "🤔",
   "AAH I'm fading away😵",
@@ -35,6 +35,12 @@ const phrases = [
   "Es lo que es",
   "🪦",
   "👻",
+  "I'm a scary ghost now👻",
+  "Booooo I'm flying around you🧞‍♂️",
+  "I will haunt you unless you press the green button",
+  "I will move your furniture around",
+  "Wish they would move for different reasons tho😏",
+  "I'm a ghost! You gotta save me",
   "Press green to bring me back to life😌", //Final
 ];
 
