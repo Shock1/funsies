@@ -1,10 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const scratchCardText = document.querySelector(".scratch-card-text");
-  if (!scratchCardText) {
-    console.error("❌ Error: Element with class 'scratch-card-text' not found.");
-    return;
-  }
-
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     const scratchCardCover = document.querySelector(".scratch-card-cover");
@@ -161,7 +154,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5);
       }
     };
-
-
-  // Your script logic...
-});
