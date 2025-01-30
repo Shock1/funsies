@@ -125,6 +125,8 @@
       }
     };
 
+    let previousUrl = null;  // Initialize it globally
+
     const setImageFromCanvas = () => {
       canvas.toBlob((blob) => {
         const url = URL.createObjectURL(blob);
