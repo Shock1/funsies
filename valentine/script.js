@@ -1,3 +1,13 @@
+// Check if the user is authenticated
+console.log("authenticated");
+var authenticated = sessionStorage.getItem("authenticated");
+// Log the value of the authenticated variable
+if (!authenticated || authenticated !== "true") {
+// If not authenticated, redirect to the landing page
+  window.location.href = "../../index.html";
+  console.log("not authenticated");
+  }
+
 import gsap from 'https://cdn.skypack.dev/gsap@3.12.0';
 import ScrollTrigger from 'https://cdn.skypack.dev/gsap@3.12.0/ScrollTrigger';
 
@@ -10,6 +20,11 @@ const config = {
   scroll: true,
   debug: false,
 };
+
+// Make h1 appear
+$(document).ready(function () {
+  $("h1.fade-in").fadeIn(2000); // Fade in over 2 seconds
+});
 
 // Array of phrases for the "test" text
 const phrases = [
@@ -156,6 +171,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log(`Updated font size: ${yesButton.style.fontSize}`);
     console.log(`Updated padding: ${yesButton.style.padding}`);
+
+    // Hide the .gifs and .love-counter sections
+    const gifsSection = document.querySelector('.gifs');
+    const loveCounterSection = document.querySelector('.love-counter');
+
+    if (gifsSection && loveCounterSection) {
+      gifsSection.style.display = 'none';
+      loveCounterSection.style.display = 'none';
+      console.log('Gifs and love-counter sections hidden');
+    } else {
+      console.error('Sections not found in the DOM');
+    }
   });
 });
 
