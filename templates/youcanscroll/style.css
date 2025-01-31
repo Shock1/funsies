@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 @import url('https://unpkg.com/normalize.css') layer(normalize);
-@import url("https://fonts.googleapis.com/css?family=Alata&display=swap");
 
-:root {
-  --speed: 0.85;
-  --primary: #fff;
-  --size: 30;
-  --ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
 @layer normalize, base, demo, stick, effect, srollbar, debug;
 
 @layer debug {
@@ -82,9 +75,7 @@
     --lightness: 65%;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --lightness: 75%;
-    }
+    --lightness: 75%;
   }
   ul {
     --step: calc((var(--end) - var(--start)) / (var(--count) - 1));
@@ -132,25 +123,14 @@
 }
 
 @layer stick {
-  section.you-can {
+  section:first-of-type {
     --font-level: 6;
     display: flex;
     line-height: 1.25;
     width: 100%;
     padding-left: 5rem;
   }
-  section.valentine {
-    min-height: 100vh;
-    display: flex;
-    place-items: center;
-    width: 100%;
-    justify-content: center;
-
-    h2 {
-      --font-level: 6;
-    }
-  }
-  section.love-counter {
+  section:last-of-type {
     min-height: 100vh;
     display: flex;
     place-items: center;
@@ -164,7 +144,7 @@
   main {
     width: 100%;
   }
-  section.you-can h2 {
+  section:first-of-type h2 {
     position: sticky;
     top: calc(50% - 0.5lh);
     font-size: inherit;
@@ -347,6 +327,8 @@ div.tp-dfwv {
   position: fixed;
 }
 
+
+
 /* Buttons div */
 .buttons-div{
   min-height: 20vh;
@@ -519,10 +501,4 @@ button:active .shadow {
 
 button:focus:not(:focus-visible) {
  outline: none;
-}
-
-
-/* Gifs */
-.gifs, .love-counter {
-  display: none; /* Hide the section initially */
 }
