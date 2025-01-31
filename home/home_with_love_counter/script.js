@@ -162,34 +162,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //counter
-function updateLoveCounter() {
-  // Set the countdown target to February 14th, 2025, 00:00:00 in Tashkent time (GMT+5)
-  const targetDate = new Date('2025-02-14T00:00:00+05:00'); 
+    // Function to update the love counter
+    function updateLoveCounter() {
+      const startDate = new Date('2023-12-15T00:00:00'); // December 15th, 2024
+      const now = new Date(); // Current date and time
+      const elapsedTime = now - startDate; // Time difference in milliseconds
 
-  const now = new Date(); // Current date and time
-  const elapsedTime = targetDate - now; // Time remaining in milliseconds
+      if (elapsedTime >= 0) {
+        // Convert elapsed time into days, hours, minutes, and seconds
+        const days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+        const seconds = Math.floor((elapsedTime / 1000) % 60);
 
-  if (elapsedTime >= 0) {
-    // Convert remaining time into days, hours, minutes, and seconds
-    const days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
-    const seconds = Math.floor((elapsedTime / 1000) % 60);
+        // Format the string
+        const formattedTime = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-    // Format the string
-    const formattedTime = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        // Update the #love-counter span
+        document.getElementById('love-counter').textContent = formattedTime;
+      } else {
+        document.getElementById('love-counter').textContent = "Starts on Dec 15, 2024!";
+      }
+    }
 
-    // Update the #love-counter span
-    document.getElementById('love-counter').textContent = formattedTime;
-  } else {
-    // When the countdown ends
-    document.getElementById('love-counter').textContent = "Happy Valentine's Day! 🎁";
-  }
-}
+    // Update the counter every second
+    setInterval(updateLoveCounter, 1000);
+    updateLoveCounter(); 
 
-// Update the counter every second
-setInterval(updateLoveCounter, 1000);
-updateLoveCounter(); // Initial call
 
 
     //Confetti
@@ -201,18 +200,14 @@ updateLoveCounter(); // Initial call
         origin: { y: 0.6 } // Adjusts the starting point of confetti
       });
     
-      // Select and make both sections visible
+      // Make the section visible
       const gifsSection = document.querySelector('.gifs');
-      const loveCounterSection = document.querySelector('.love-counter');
-      
       gifsSection.style.display = 'block';
-      loveCounterSection.style.display = 'block';
     
-      // Scroll smoothly to the gifs section first
+      // Scroll smoothly to the visible section
       gifsSection.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
     });
-    
     
