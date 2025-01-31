@@ -8,7 +8,6 @@
   <title>Home</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
-  <script type="module" src="script.js"></script>
 </head>
 
 <body>
@@ -46,45 +45,42 @@
           <li style="--i: 21">do it all baby</li>
         </ul>
       </section>
-      
-<!--Valentine-->
-<section class="valentine" id="valentine" style="margin-top: 30em;">
-  <h2 class="fluid">
-    But can you be my<br>valentine? ;)
-  </h2>
-</section>
-<div class="buttons-div">
-  <div style="min-height: 5em; align-content: center;">
-    <p class="test-text"></p>
-  </div>
-  <div class="buttons-container" style="margin-bottom: 20em;">
-    <button class="yes-button">
-      <span class="shadow"></span>
-      <span class="edge"></span>
-      <span class="front text">Yes</span>
-    </button>
-    
-    <button class="no-button" style="margin-left: 5em;">
-      <span class="shadow"></span>
-      <span class="edge"></span>
-      <span class="front text">No</span>
-    </button>
-  </div>
-</div>
-
-<!--Love Counter-->
-<!-- <section class="love-counter">
-  <h2 class="fluid" style="color: #ff084c;">
-    Love Counter:<br>
-    <span id="love-counter" style="color: #0000;">0</span>
-  </h2>
-</section> -->
-<!--Constitution-->
-<!-- <section class="constitution" style="margin-top: 30em;">
-  <h2 class="fluid">Our constitution:</h2>
-</section> -->
-
-    </main>
-</body>
-
+    <!--Valentine-->
+    <section class="valentine" id="valentine" style="margin-top: 30em;">
+      <h2 class="fluid">
+        But can you be my<br>valentine? ;)
+      </h2>
+    </section>
+    <div class="buttons-div">
+      <div style="min-height: 5em; align-content: center;">
+        <p class="test-text"></p>
+      </div>
+      <div class="buttons-container" style="margin-bottom: 20em;">
+        <button class="yes-button" id="confetti-button">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front text">Yes</span>
+        </button>
+        
+        <button class="no-button" style="margin-left: 5em;">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front text">No</span>
+        </button>
+      </div>
+    </div>
+        <section class="love-counter">
+          <h2 class="fluid" style="color: #ff084c;">
+            Love Counter:<br>
+            <span id="love-counter" style="color: #0000;">0</span>
+          </h2>
+        </section>
+        <!--Constitution-->
+        <section class="constitution" style="margin-top: 30em;">
+          <h2 class="fluid">Our constitution:</h2>
+        </section>
+        </main>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
 </html>

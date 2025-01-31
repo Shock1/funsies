@@ -188,3 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update the counter every second
     setInterval(updateLoveCounter, 1000);
     updateLoveCounter(); 
+
+
+
+    //Confetti
+    document.getElementById('confetti-button').addEventListener('click', () => {
+      confetti({
+        particleCount: 150,
+        spread: 60,
+        origin: { y: 0.6 } // Adjusts the starting point of confetti
+      });
+      console.log("works2");
+    });
