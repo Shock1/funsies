@@ -523,6 +523,8 @@ button:focus:not(:focus-visible) {
 
 
 /* Gifs */
-.gifs, .love-counter {
-  display: none; /* Hide the section initially */
+/* Hide the section initially */
+
+.gifs {
+  display: none; 
 }
