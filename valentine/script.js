@@ -174,11 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hide the .gifs and .love-counter sections
     const gifsSection = document.querySelector('.gifs');
-    const loveCounterSection = document.querySelector('.love-counter');
+    // const loveCounterSection = document.querySelector('.love-counter');
 
-    if (gifsSection && loveCounterSection) {
+    // if (gifsSection && loveCounterSection) {
+    if (gifsSection) {
       gifsSection.style.display = 'none';
-      loveCounterSection.style.display = 'none';
+      // loveCounterSection.style.display = 'none';
       console.log('Gifs and love-counter sections hidden');
     } else {
       console.error('Sections not found in the DOM');
@@ -230,10 +231,10 @@ updateLoveCounter(); // Initial call
     
       // Select and make both sections visible
       const gifsSection = document.querySelector('.gifs');
-      const loveCounterSection = document.querySelector('.love-counter');
+      // const loveCounterSection = document.querySelector('.love-counter');
       
       gifsSection.style.display = 'block';
-      loveCounterSection.style.display = 'block';
+      // loveCounterSection.style.display = 'block';
     
       // Scroll smoothly to the gifs section first
       gifsSection.scrollIntoView({
