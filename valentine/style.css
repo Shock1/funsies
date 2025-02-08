@@ -155,7 +155,7 @@
     display: flex;
     place-items: center;
     width: 100%;
-    justify-content: center;
+    justify-content: center !important;
 
     h2 {
       --font-level: 6;
