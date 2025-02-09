@@ -58,7 +58,7 @@ const phrases = [
   "I'm a ghost! You gotta save me",
   "Press green to bring me back to life😌", //Final
 ];
-
+let countdownInterval = setInterval(updateLoveCounter, 1000); // Store the interval globally so we can clear it
 let currentPhraseIndex = -1; // Start with no phrase displayed
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -191,39 +191,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //counter
 function updateLoveCounter() {
-  // Set the countdown target to February 14th, 2025, 00:00:00 in Tashkent time (GMT+5)
-  const targetDate = new Date('2025-02-14T00:00:00+05:00'); 
-
-  const now = new Date(); // Current date and time
-  const elapsedTime = targetDate - now; // Time remaining in milliseconds
+  const targetDate = new Date('2025-02-08T18:39:00-05:00');
+  const now = new Date();
+  const elapsedTime = targetDate - now;
 
   if (elapsedTime >= 0) {
-    // Convert remaining time into days, hours, minutes, and seconds
+    // Countdown is still running
     const days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
     const hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
     const seconds = Math.floor((elapsedTime / 1000) % 60);
 
-    // Format the string
     const formattedTime = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-    // Update the #love-counter span
     document.getElementById('love-counter').textContent = formattedTime;
   } else {
-    // When the countdown ends
-    document.getElementById('love-counter').textContent = "Happy Valentine's Day! 🎁";
-  
+    // Countdown finished
+    document.getElementById('love-counter').textContent = "";
+
     const giftRevealSection = document.querySelector('.gift-reveal');
     if (giftRevealSection) {
-      giftRevealSection.style.display = 'block'; // Make the section visible
+      giftRevealSection.style.display = 'flex'; // Show the section
       giftRevealSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Stop the interval (this is the missing fix!)
+      clearInterval(countdownInterval);
+      console.log("Countdown ended. Interval cleared.");
     }
   }
 }
 
-// Update the counter every second
-setInterval(updateLoveCounter, 1000);
-updateLoveCounter(); // Initial call
+// Initial call to display the current countdown immediately
+updateLoveCounter();
+
 
 
     //Confetti
@@ -249,4 +248,186 @@ updateLoveCounter(); // Initial call
       });
     });
     
+
+
+//Scratch card
+
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+const scratchCardCover = document.querySelector(".scratch-card-cover");
+const scratchCardCanvasRender = document.querySelector(
+  ".scratch-card-canvas-render"
+);
+const scratchCardCoverContainer = document.querySelector(
+  ".scratch-card-cover-container"
+);
+const scratchCardText = document.querySelector(".scratch-card-text");
+const scratchCardImage = document.querySelector(".scratch-card-image");
+
+const canvas = document.querySelector("canvas");
+const context = canvas.getContext("2d");
+let isPointerDown = false;
+let positionX;
+let positionY;
+let clearDetectionTimeout = null;
+
+const devicePixelRatio = window.devicePixelRatio || 1;
+
+const canvasWidth = canvas.offsetWidth * devicePixelRatio;
+const canvasHeight = canvas.offsetHeight * devicePixelRatio;
+
+canvas.width = canvasWidth;
+canvas.height = canvasHeight;
+
+context.scale(devicePixelRatio, devicePixelRatio);
+
+if (isSafari) {
+  canvas.classList.add("hidden");
+}
+
+canvas.addEventListener("pointerdown", (e) => {
+  scratchCardCover.classList.remove("shine");
+  ({ x: positionX, y: positionY } = getPosition(e));
+  clearTimeout(clearDetectionTimeout);
+
+  canvas.addEventListener("pointermove", plot);
+
+  window.addEventListener(
+    "pointerup",
+    (e) => {
+      canvas.removeEventListener("pointermove", plot);
+      clearDetectionTimeout = setTimeout(() => {
+        checkBlackFillPercentage();
+      }, 500);
+    },
+    { once: true }
+  );
+});
+
+const checkBlackFillPercentage = () => {
+  const imageData = context.getImageData(0, 0, canvasWidth, canvasHeight);
+  const pixelData = imageData.data;
+
+  let blackPixelCount = 0;
+
+  for (let i = 0; i < pixelData.length; i += 4) {
+    const red = pixelData[i];
+    const green = pixelData[i + 1];
+    const blue = pixelData[i + 2];
+    const alpha = pixelData[i + 3];
+
+    if (red === 0 && green === 0 && blue === 0 && alpha === 255) {
+      blackPixelCount++;
+    }
+  }
+
+  const blackFillPercentage =
+    (blackPixelCount * 100) / (canvasWidth * canvasHeight);
+
+  if (blackFillPercentage >= 45) {
+    scratchCardCoverContainer.classList.add("clear");
+    // confetti({
+    //   particleCount: 100,
+    //   spread: 90,
+    //   origin: {
+    //     y:
+    //       (scratchCardText.getBoundingClientRect().bottom + 60) /
+    //       window.innerHeight
+    //   }
+    // });
+
+
+    const triggerConfettiMultipleTimes = (times, interval) => {
+      for (let i = 0; i < times; i++) {
+        setTimeout(() => {
+          confetti({
+            particleCount: 100,
+            spread: 90,
+            origin: {
+              y:
+                (scratchCardText.getBoundingClientRect().bottom + 60) /
+                window.innerHeight
+            }
+          });
+        }, i * interval);
+      }
+    };
     
+    // Trigger the confetti 3 times with a 500ms delay between each
+    triggerConfettiMultipleTimes(3, 500);
+
+    scratchCardText.textContent = "";
+    scratchCardImage.classList.add("animate");
+    scratchCardCoverContainer.addEventListener(
+      "transitionend",
+      () => {
+        scratchCardCoverContainer.classList.add("hidden");
+      },
+      { once: true }
+    );
+  }
+};
+
+const getPosition = ({ clientX, clientY }) => {
+  const { left, top } = canvas.getBoundingClientRect();
+  return {
+    x: clientX - left,
+    y: clientY - top
+  };
+};
+
+const plotLine = (context, x1, y1, x2, y2) => {
+  var diffX = Math.abs(x2 - x1);
+  var diffY = Math.abs(y2 - y1);
+  var dist = Math.sqrt(diffX * diffX + diffY * diffY);
+  var step = dist / 50;
+  var i = 0;
+  var t;
+  var x;
+  var y;
+
+  while (i < dist) {
+    t = Math.min(1, i / dist);
+
+    x = x1 + (x2 - x1) * t;
+    y = y1 + (y2 - y1) * t;
+
+    context.beginPath();
+    context.arc(x, y, 16, 0, Math.PI * 2);
+    context.fill();
+
+    i += step;
+  }
+};
+
+let previousUrl = null;  // Initialize it globally
+
+const setImageFromCanvas = () => {
+  canvas.toBlob((blob) => {
+    const url = URL.createObjectURL(blob);
+    previousUrl = scratchCardCanvasRender.src;
+    scratchCardCanvasRender.src = url;
+    if (!previousUrl) {
+      scratchCardCanvasRender.classList.remove("hidden");
+    } else {
+      URL.revokeObjectURL(previousUrl);
+    }
+    previousUrl = url;
+  });
+};
+
+let setImageTimeout = null;
+
+const plot = (e) => {
+  const { x, y } = getPosition(e);
+  plotLine(context, positionX, positionY, x, y);
+  positionX = x;
+  positionY = y;
+  if (isSafari) {
+    clearTimeout(setImageTimeout);
+
+    setImageTimeout = setTimeout(() => {
+      setImageFromCanvas();
+    }, 5);
+  }
+};
