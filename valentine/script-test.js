@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //counter
 function updateLoveCounter() {
-  const targetDate = new Date('2025-02-08T19:46:00-05:00');
+  const targetDate = new Date('2025-02-14T00:00:00+05:00');
   const now = new Date();
   const elapsedTime = targetDate - now;
 
@@ -224,6 +224,10 @@ function updateLoveCounter() {
 updateLoveCounter();
 
 
+// Refresh button
+document.querySelector('.refresher').addEventListener('click', () => {
+  window.location.reload();  // Refreshes the page
+});
 
     //Confetti
     document.getElementById('confetti-button').addEventListener('click', () => {
