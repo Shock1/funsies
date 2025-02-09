@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //counter
 function updateLoveCounter() {
-  const targetDate = new Date('2025-02-08T18:39:00-05:00');
+  const targetDate = new Date('2025-02-08T19:42:00-05:00');
   const now = new Date();
   const elapsedTime = targetDate - now;
 
