@@ -1,0 +1,7 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.invitationworld.uz	TRUE	/	FALSE	1999999999	__ddg8_	cQCTTwtlOpc7bDEt
+.invitationworld.uz	TRUE	/	FALSE	1999999999	__ddg10_	1769303893
+.invitationworld.uz	TRUE	/	FALSE	1999999999	__ddg9_	71.255.49.59
+.invitationworld.uz	TRUE	/	FALSE	1999999999	__ddg1_	arFwlTA802dpRBRFyBWz
+
